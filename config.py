@@ -15,7 +15,7 @@ os.environ["GROQ_API_KEY"] = groq_api_key
 
 
 def get_llm() -> ChatGroq:
-    return ChatGroq(model="llama-3.1-8b-instant", temperature=0)
+    return ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
 
 def get_memory() -> ConversationBufferWindowMemory:
@@ -35,6 +35,7 @@ def get_summary_prompt() -> PromptTemplate:
         )
     )
 
+
 def get_question_prompt() -> PromptTemplate:
     return PromptTemplate(
         input_variables=["question", "chat_history"],
@@ -47,6 +48,7 @@ def get_question_prompt() -> PromptTemplate:
         )
     )
 
+
 def get_summarization_chain():
     return LLMChain(
         llm = get_llm(),
@@ -54,6 +56,7 @@ def get_summarization_chain():
         memory = get_memory(),
         verbose = True
     )
+
 
 def get_follow_up_chain():
     return LLMChain(
